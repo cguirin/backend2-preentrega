@@ -11,7 +11,7 @@ import sessionRouter from "./routes/sessions.router.js";
 import MongoStore from "connect-mongo";
 import initializePassport from "./config/passport.config.js";
 import passport from "passport";
-
+import cookieParser from "cookie-parser";
 const app = express();
 const PUERTO = 8080;
 const productManager = new ProductManager("./src/models/productos.json");
@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./src/public")); 
 app.use(express.urlencoded({extended: true}));
+app.use (cookieParser()),
 app.use(session({
     secret: "secretCoder", 
     resave: true, 
